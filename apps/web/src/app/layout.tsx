@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { ThemeProvider } from "~/components/ThemeProvider";
 
@@ -30,9 +31,11 @@ export default function Layout(props: { children: React.ReactNode }) {
       suppressHydrationWarning
     >
       <body suppressHydrationWarning={true}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {props.children}
-        </ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {props.children}
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
